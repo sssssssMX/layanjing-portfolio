@@ -1,7 +1,10 @@
+import Link from 'next/link';
+
 const categories = [
   {
     name: '售楼处样板间',
     english: 'SALES GALLERY',
+    slug: 'sales-office',
     color: '#8b7968',
     projects: [
       '光序售楼处',
@@ -21,6 +24,7 @@ const categories = [
   {
     name: '私宅',
     english: 'PRIVATE RESIDENCE',
+    slug: 'private-home',
     color: '#b28a62',
     projects: [
       '留白之家',
@@ -40,6 +44,7 @@ const categories = [
   {
     name: '建筑',
     english: 'ARCHITECTURE',
+    slug: 'architecture',
     color: '#9da3a8',
     projects: [
       '折线美术馆',
@@ -59,6 +64,7 @@ const categories = [
   {
     name: '酒店',
     english: 'HOTEL',
+    slug: 'hotel',
     color: '#a67855',
     projects: [
       '雾屿酒店',
@@ -78,6 +84,7 @@ const categories = [
   {
     name: '民宿',
     english: 'HOMESTAY',
+    slug: 'homestay',
     color: '#7f8a75',
     projects: [
       '野白民宿',
@@ -97,6 +104,7 @@ const categories = [
   {
     name: '商铺',
     english: 'RETAIL',
+    slug: 'retail',
     color: '#6d7178',
     projects: [
       '半格咖啡',
@@ -115,6 +123,10 @@ const categories = [
   }
 ];
 
+function makeSlug(categorySlug, index) {
+  return `${categorySlug}-${index + 1}`;
+}
+
 export default function HomePage() {
   return (
     <main className="page">
@@ -129,14 +141,14 @@ export default function HomePage() {
 
       <section className="category-row">
         {categories.map((category) => (
-          <a key={category.name} href={`#${category.english}`}>
+          <a key={category.name} href={`#${category.slug}`}>
             {category.name}
           </a>
         ))}
       </section>
 
       {categories.map((category) => (
-        <section className="category-section" id={category.english} key={category.name}>
+        <section className="category-section" id={category.slug} key={category.name}>
           <div className="category-title-row">
             <div>
               <p className="eyebrow">{category.english}</p>
@@ -147,7 +159,11 @@ export default function HomePage() {
 
           <div className="work-grid">
             {category.projects.map((project, index) => (
-              <article className="work-item" key={project}>
+              <Link
+                className="work-item"
+                key={project}
+                href={`/project/${makeSlug(category.slug, index)}`}
+              >
                 <div className="image-box" style={{ backgroundColor: category.color }}>
                   <div className="image-light" />
                   <span>{String(index + 1).padStart(2, '0')}</span>
@@ -162,7 +178,7 @@ export default function HomePage() {
                     {category.english} | LAYANJING VISUAL
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
 
