@@ -54,21 +54,7 @@ const projects = [
 
 export default function HomePage() {
   return (
-    <main>
-      <header className="site-header">
-        <div className="logo">辣眼睛视觉</div>
-
-        <nav className="main-nav">
-          {categories.map((item) => (
-            <a key={item} href="#works">
-              {item}
-            </a>
-          ))}
-        </nav>
-
-        <div className="phone-mark">157****1572</div>
-      </header>
-
+    <main className="page">
       <section className="intro">
         <p className="eyebrow">SPACE PHOTOGRAPHY PORTFOLIO</p>
         <h1>空间摄影作品集</h1>
@@ -87,7 +73,7 @@ export default function HomePage() {
       </section>
 
       <section className="work-grid" id="works">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <article className="work-item" key={project.title}>
             <div className="image-box" style={{ backgroundColor: project.color }}>
               <div className="image-light" />
