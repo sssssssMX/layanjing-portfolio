@@ -13,7 +13,9 @@ const categories = [
       '林语销售中心',
       '城市会客厅',
       '海棠样板间',
-      '森屿售楼处'
+      '森屿售楼处',
+      '江湾展示中心',
+      '天际样板间'
     ]
   },
   {
@@ -30,7 +32,9 @@ const categories = [
       '静谧之家',
       '光影私宅',
       '暖木住宅',
-      '云端公寓'
+      '云端公寓',
+      '湖畔私宅',
+      '松弛之家'
     ]
   },
   {
@@ -47,7 +51,9 @@ const categories = [
       '艺术馆外立面',
       '滨水建筑',
       '公共空间',
-      '光庭建筑'
+      '光庭建筑',
+      '山谷图书馆',
+      '城市展馆'
     ]
   },
   {
@@ -64,7 +70,9 @@ const categories = [
       '温泉度假酒店',
       '海岸酒店',
       '林间客房',
-      '云顶酒店'
+      '云顶酒店',
+      '湖景度假酒店',
+      '暮色酒店'
     ]
   },
   {
@@ -81,7 +89,9 @@ const categories = [
       '林下民宿',
       '竹影山房',
       '溪畔客舍',
-      '白墙庭院'
+      '白墙庭院',
+      '远山民宿',
+      '隐溪小筑'
     ]
   },
   {
@@ -98,7 +108,9 @@ const categories = [
       '品牌展厅',
       '集合店空间',
       '茶饮空间',
-      '生活方式店'
+      '生活方式店',
+      '夜色酒吧',
+      '极简餐厅'
     ]
   }
 ];
@@ -130,7 +142,7 @@ export default function HomePage() {
               <p className="eyebrow">{category.english}</p>
               <h2>{category.name}</h2>
             </div>
-            <span>10 PROJECTS</span>
+            <span>{category.projects.length} PROJECTS</span>
           </div>
 
           <div className="work-grid">
@@ -157,8 +169,7 @@ export default function HomePage() {
           <div className="project-switch">
             <button>01</button>
             <button>02</button>
-            <button>03</button>
-            <span>项目切换</span>
+            <span>每个分类精选 12 个优秀项目</span>
           </div>
         </section>
       ))}
