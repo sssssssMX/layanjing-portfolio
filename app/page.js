@@ -1,54 +1,105 @@
 const categories = [
-  '售楼处样板间',
-  '私宅',
-  '建筑',
-  '酒店',
-  '民宿',
-  '商铺'
-];
-
-const projects = [
   {
-    title: '售楼处样板间',
-    category: 'SALES GALLERY',
-    desc: '接待大厅、沙盘区、洽谈区与样板间空间摄影，呈现地产项目的秩序、材质与空间气质。',
-    meta: 'LAYANJING VISUAL | SPACE',
-    color: '#8b7968'
+    name: '售楼处样板间',
+    english: 'SALES GALLERY',
+    color: '#8b7968',
+    projects: [
+      '光序售楼处',
+      '云幕生活馆',
+      '山隐样板间',
+      '境界体验中心',
+      '湖岸接待中心',
+      '星河展示区',
+      '林语销售中心',
+      '城市会客厅',
+      '海棠样板间',
+      '森屿售楼处'
+    ]
   },
   {
-    title: '私宅空间',
-    category: 'PRIVATE RESIDENCE',
-    desc: '记录客厅、卧室、餐厨、卫浴与日常居住氛围，以自然光线呈现真实空间质感。',
-    meta: 'RESIDENCE | DESIGN',
-    color: '#b28a62'
+    name: '私宅',
+    english: 'PRIVATE RESIDENCE',
+    color: '#b28a62',
+    projects: [
+      '留白之家',
+      '向光公寓',
+      '木序宅邸',
+      '灰度住宅',
+      '城市平层',
+      '山居别墅',
+      '静谧之家',
+      '光影私宅',
+      '暖木住宅',
+      '云端公寓'
+    ]
   },
   {
-    title: '建筑外观',
-    category: 'ARCHITECTURE',
-    desc: '关注建筑立面、体块关系、环境关系与光影变化，用画面呈现建筑本身的力量。',
-    meta: 'ARCHITECTURE | CITY',
-    color: '#9da3a8'
+    name: '建筑',
+    english: 'ARCHITECTURE',
+    color: '#9da3a8',
+    projects: [
+      '折线美术馆',
+      '水岸展厅',
+      '云谷办公楼',
+      '山丘会客厅',
+      '城市立面',
+      '社区中心',
+      '艺术馆外立面',
+      '滨水建筑',
+      '公共空间',
+      '光庭建筑'
+    ]
   },
   {
-    title: '酒店空间',
-    category: 'HOTEL',
-    desc: '覆盖大堂、客房、餐厅、公区、泳池与夜景拍摄，兼顾商业传播与空间美感。',
-    meta: 'HOTEL | COMMERCIAL',
-    color: '#a67855'
+    name: '酒店',
+    english: 'HOTEL',
+    color: '#a67855',
+    projects: [
+      '雾屿酒店',
+      '观海套房酒店',
+      '森屿度假酒店',
+      '序章精品酒店',
+      '山野酒店',
+      '城市商务酒店',
+      '温泉度假酒店',
+      '海岸酒店',
+      '林间客房',
+      '云顶酒店'
+    ]
   },
   {
-    title: '民宿空间',
-    category: 'HOMESTAY',
-    desc: '呈现庭院、公区、客房、露台与在地生活方式，强调松弛、自然与情绪氛围。',
-    meta: 'HOMESTAY | LIFESTYLE',
-    color: '#7f8a75'
+    name: '民宿',
+    english: 'HOMESTAY',
+    color: '#7f8a75',
+    projects: [
+      '野白民宿',
+      '云边小院',
+      '慢屿山居',
+      '石间宿集',
+      '山谷院子',
+      '海边小屋',
+      '林下民宿',
+      '竹影山房',
+      '溪畔客舍',
+      '白墙庭院'
+    ]
   },
   {
-    title: '商铺空间',
-    category: 'RETAIL',
-    desc: '拍摄门头、陈列、动线、吧台、餐饮与零售空间，帮助品牌建立视觉识别。',
-    meta: 'RETAIL | BRAND',
-    color: '#6d7178'
+    name: '商铺',
+    english: 'RETAIL',
+    color: '#6d7178',
+    projects: [
+      '半格咖啡',
+      '序列买手店',
+      '光感餐酒吧',
+      '材质实验室',
+      '城市面包店',
+      '花艺商铺',
+      '品牌展厅',
+      '集合店空间',
+      '茶饮空间',
+      '生活方式店'
+    ]
   }
 ];
 
@@ -57,7 +108,7 @@ export default function HomePage() {
     <main className="page">
       <section className="intro">
         <p className="eyebrow">SPACE PHOTOGRAPHY PORTFOLIO</p>
-        <h1>空间摄影作品集</h1>
+        <h1>辣眼睛空间摄影作品集</h1>
         <p>
           辣眼睛视觉专注空间摄影，服务售楼处样板间、私宅、建筑、酒店、民宿与商铺项目。
           用克制、干净、有秩序的画面，呈现空间的结构、材质、光线与情绪。
@@ -65,29 +116,52 @@ export default function HomePage() {
       </section>
 
       <section className="category-row">
-        {categories.map((item) => (
-          <a key={item} href="#works">
-            {item}
+        {categories.map((category) => (
+          <a key={category.name} href={`#${category.english}`}>
+            {category.name}
           </a>
         ))}
       </section>
 
-      <section className="work-grid" id="works">
-        {projects.map((project) => (
-          <article className="work-item" key={project.title}>
-            <div className="image-box" style={{ backgroundColor: project.color }}>
-              <div className="image-light" />
-              <span>{project.category}</span>
+      {categories.map((category) => (
+        <section className="category-section" id={category.english} key={category.name}>
+          <div className="category-title-row">
+            <div>
+              <p className="eyebrow">{category.english}</p>
+              <h2>{category.name}</h2>
             </div>
+            <span>10 PROJECTS</span>
+          </div>
 
-            <div className="work-text">
-              <h2>{project.title}</h2>
-              <p>{project.desc}</p>
-              <div className="meta">{project.meta}</div>
-            </div>
-          </article>
-        ))}
-      </section>
+          <div className="work-grid">
+            {category.projects.map((project, index) => (
+              <article className="work-item" key={project}>
+                <div className="image-box" style={{ backgroundColor: category.color }}>
+                  <div className="image-light" />
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                </div>
+
+                <div className="work-text">
+                  <h3>{project}</h3>
+                  <p>
+                    空间摄影项目入口，后续可替换为真实项目图片、地点、年份与完整案例页面。
+                  </p>
+                  <div className="meta">
+                    {category.english} | LAYANJING VISUAL
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="project-switch">
+            <button>01</button>
+            <button>02</button>
+            <button>03</button>
+            <span>项目切换</span>
+          </div>
+        </section>
+      ))}
 
       <section className="contact-strip">
         <div>
