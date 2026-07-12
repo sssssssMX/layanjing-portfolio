@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 
 const projectMap = {
@@ -138,6 +141,7 @@ function getProject(slug) {
 
 export default function ProjectDetailPage({ params }) {
   const project = getProject(params.slug);
+  const [activeImage, setActiveImage] = useState(null);
 
   if (!project) {
     return (
@@ -146,6 +150,14 @@ export default function ProjectDetailPage({ params }) {
         <Link href="/">返回首页</Link>
       </main>
     );
+  }
+
+  function handleImageClick(index) {
+    if (activeImage === index) {
+      setActiveImage(null);
+    } else {
+      setActiveImage(index);
+    }
   }
 
   return (
@@ -168,22 +180,37 @@ export default function ProjectDetailPage({ params }) {
         </div>
       </section>
 
-      <section className="detail-gallery">
+      <section className={activeImage !== null ? 'detail-gallery has-active' : 'detail-gallery'}>
         {Array.from({ length: 12 }).map((_, index) => (
-          <div
-            className="detail-image"
+          <button
+            type="button"
+            className={activeImage === index ? 'detail-image active' : 'detail-image'}
             key={index}
             style={{ backgroundColor: project.color }}
+            onClick={() => handleImageClick(index)}
           >
             <div className="image-light" />
             <span>{String(index + 1).padStart(2, '0')}</span>
-          </div>
+          </button>
         ))}
       </section>
 
+      {activeImage !== null && (
+        <div className="image-backdrop" onClick={() => setActiveImage(null)}>
+          <div
+            className="zoom-image"
+            style={{ backgroundColor: project.color }}
+          >
+            <div className="image-light" />
+            <span>{String(activeImage + 1).padStart(2, '0')}</span>
+          </div>
+          <p>点击任意位置缩小</p>
+        </div>
+      )}
+
       <section className="detail-bottom">
         <Link href="/">返回首页</Link>
-        <span>后续可替换为真实项目照片</span>
+        <span>点击照片可放大查看，再点击可缩回</span>
       </section>
     </main>
   );
