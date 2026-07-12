@@ -493,3 +493,71 @@ button {
     flex-direction: column;
   }
 }
+/* 图片点击放大 */
+.detail-image {
+  border: 0;
+  padding: 0;
+  cursor: zoom-in;
+  display: block;
+}
+
+.detail-image.active {
+  outline: 2px solid #111;
+  outline-offset: 4px;
+}
+
+.image-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(250, 249, 246, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 28px;
+}
+
+.zoom-image {
+  width: min(520px, 82vw);
+  max-height: 82vh;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.28);
+}
+
+.zoom-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.24), transparent 36%),
+    radial-gradient(circle at 70% 28%, rgba(255,255,255,0.28), transparent 18%),
+    linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.2));
+}
+
+.zoom-image span {
+  position: absolute;
+  left: 22px;
+  bottom: 24px;
+  color: rgba(255,255,255,0.85);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.image-backdrop p {
+  margin: 18px 0 0;
+  color: #666;
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .zoom-image {
+    width: min(360px, 88vw);
+  }
+}
